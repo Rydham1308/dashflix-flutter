@@ -24,7 +24,6 @@ class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
 
   Future<void> getPopularMovies(GetPopularMoviesEvent event,
       Emitter<PopularMoviesState> emit) async {
-    // final prevState = (state is PopularMoviesStates) ? state as PopularMoviesStates: null;
     try {
       if (resultList.isEmpty) {
         emit(const PopularMoviesStates.isLoading());
@@ -42,9 +41,6 @@ class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
         emit(PopularMoviesStates.isLoaded(
             resultModel: resultList, message: 'Movies Loaded.', totalPages: totalPages));
       }
-      /*else if (resultList.isNotEmpty && page != 1) {
-        emit(PopularMoviesStates.isLoaded(resultModel: resultList, message: 'Movies Loaded.'));
-      }*/
       else {
         emit(const PopularMoviesStates.isError(errorMessage: 'No Data Found.'));
       }
