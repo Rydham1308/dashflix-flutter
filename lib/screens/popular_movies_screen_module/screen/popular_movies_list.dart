@@ -1,16 +1,15 @@
-import 'dart:ui';
-
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dashflix/constants/api_status.dart';
+import 'package:dashflix/constants/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../constants/api_status.dart';
 import '../api/fetch_movies_data.dart';
 import '../bloc/popular_movies_bloc.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class PopularMoviesList extends StatefulWidget {
+  const PopularMoviesList({super.key});
 
   static Widget create() {
     return MultiRepositoryProvider(
@@ -22,51 +21,26 @@ class HomeScreen extends StatefulWidget {
         ),
         BlocProvider(
           create: (BuildContext context) =>
-              PopularMoviesBloc(popularMovies: context.read<FetchPopularMovies>()),
-          child: const HomeScreen(),
+          PopularMoviesBloc(popularMovies: context.read<FetchPopularMovies>())..add(GetPopularMoviesEvent()),
+          child: const PopularMoviesList(),
         ),
       ],
-      child: const HomeScreen(),
+      child: const PopularMoviesList(),
     );
   }
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<PopularMoviesList> createState() => _PopularMoviesListState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<PopularMoviesBloc>().add(GetPopularMoviesEvent());
-  }
-
+class _PopularMoviesListState extends State<PopularMoviesList> {
   int currentPage = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        flexibleSpace: ClipRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 100,
-              sigmaY: 100,
-            ),
-            child: Container(
-              color: Colors.transparent,
-            ),
-          ),
-        ),
-        automaticallyImplyLeading: true,
-        backgroundColor: Colors.transparent,
-        elevation: 1,
-        title: const Text(
-          'DashFlix',
-          style: TextStyle(color: Colors.lightBlueAccent, fontWeight: FontWeight.bold),
-        ),
-      ),
+      appBar: const CustomAppBar(),
       body: SafeArea(
         child: BlocConsumer<PopularMoviesBloc, PopularMoviesState>(
           listener: (context, state) {},
