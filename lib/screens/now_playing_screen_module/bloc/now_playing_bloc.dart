@@ -30,7 +30,7 @@ class NowPlayingBloc extends Bloc<NowPlayingEvent, NowPlayingState> {
         nowPlayingResultList = data.results ?? [];
       } else {
         page++;
-        // print("page === >  $page");
+        // print("page ===  >  $page");
         final data = await _fetchNowPlayingMovies.getNowPlayingMovies(page, 'movie/now_playing');
         nowPlayingResultList.addAll(data.results ?? []);
       }

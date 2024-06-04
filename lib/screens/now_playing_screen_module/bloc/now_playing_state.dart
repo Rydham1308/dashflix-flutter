@@ -5,8 +5,6 @@ abstract class NowPlayingState {
   const NowPlayingState();
 }
 
-final class NowPlayingInitial extends NowPlayingState {}
-
 class NowPlayingMoviesStates extends NowPlayingState {
   final ApiStatus status;
   final List<NowPlayingResultModel>? resultModel;
