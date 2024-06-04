@@ -88,9 +88,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           items: [
                             getCarouselPage(
                                 state.resultModel?[0].posterPath ?? '', 'Winter', '30', false),
-                            getCarouselPage(state.resultModel?[1].posterPath ?? '', 'Wedding', '15', true),
-                            getCarouselPage(state.resultModel?[2].posterPath ?? '', 'Summer', '50', false),
-                            getCarouselPage(state.resultModel?[3].posterPath ?? '', 'Modern', '25', true),
+                            getCarouselPage(
+                                state.resultModel?[1].posterPath ?? '', 'Wedding', '15', true),
+                            getCarouselPage(
+                                state.resultModel?[2].posterPath ?? '', 'Summer', '50', false),
+                            getCarouselPage(
+                                state.resultModel?[3].posterPath ?? '', 'Modern', '25', true),
                           ],
                           //Slider Container properties
                           options: CarouselOptions(
@@ -112,12 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       return Container(
                         margin: EdgeInsets.zero,
                         child: CarouselSlider(
-                          items: [
-                            getCarouselPage('orange', 'Winter', '30', false),
-                            getCarouselPage('pink', 'Wedding', '15', true),
-                            getCarouselPage('yellow', 'Summer', '50', false),
-                            getCarouselPage('blue', 'Modern', '25', true),
-                          ],
+                          items: const [],
                           //Slider Container properties
                           options: CarouselOptions(
                               height: 400.0,
