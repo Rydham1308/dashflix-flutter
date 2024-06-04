@@ -1,10 +1,11 @@
-import 'package:dashflix/screens/home_screen_module/models/result_popular_model.dart';
+
+import 'package:dashflix/screens/popular_movies_screen_module/models/result_popular_model.dart';
 
 class MainMovieModel {
-  final int? page;
-  final int? totalPages;
-  final int? totalResults;
-  final List<ResultModel>? results;
+   int? page;
+   int? totalPages;
+   int? totalResults;
+   List<ResultModel>? results;
 
   MainMovieModel({
      this.page,

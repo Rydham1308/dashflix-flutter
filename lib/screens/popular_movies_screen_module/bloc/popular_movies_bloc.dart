@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:dashflix/screens/home_screen_module/api/fetch_movies_data.dart';
-import 'package:dashflix/screens/home_screen_module/models/result_popular_model.dart';
+
+import 'package:dashflix/screens/popular_movies_screen_module/api/fetch_movies_data.dart';
+import 'package:dashflix/screens/popular_movies_screen_module/models/result_popular_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constants/api_status.dart';
@@ -27,21 +28,20 @@ class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
     try {
       if (resultList.isEmpty) {
         emit(const PopularMoviesStates.isLoading());
-        final data = await _fetchPopularMovies.getPopularMovies(page);
+        final data = await _fetchPopularMovies.getPopularMovies(page, 'movie/popular');
         totalPages = data.totalPages ?? 0;
         resultList = data.results ?? [];
       } else {
         page++;
         // print("page === >  $page");
-        final data = await _fetchPopularMovies.getPopularMovies(page);
+        final data = await _fetchPopularMovies.getPopularMovies(page, 'movie/popular');
         resultList.addAll(data.results ?? []);
       }
 
       if (resultList.isNotEmpty) {
         emit(PopularMoviesStates.isLoaded(
             resultModel: resultList, message: 'Movies Loaded.', totalPages: totalPages));
-      }
-      else {
+      } else {
         emit(const PopularMoviesStates.isError(errorMessage: 'No Data Found.'));
       }
     } on SocketException catch (e) {

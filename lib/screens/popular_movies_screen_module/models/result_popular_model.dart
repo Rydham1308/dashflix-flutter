@@ -10,7 +10,7 @@ class ResultModel {
   String? releaseDate;
   String? title;
   bool? video;
-  num? voteAverage;
+  double? voteAverage;
   num? voteCount;
 
   ResultModel({
