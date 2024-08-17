@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'DashFlix',
       theme: ThemeData(
         brightness: Brightness.dark,
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlueAccent),
